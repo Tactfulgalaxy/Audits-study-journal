@@ -88,7 +88,7 @@ Liquidity positions are NFTs. If you don’t track them properly or allow unsafe
 
 ##  Final Thoughts
 
-Uniswap V3 is powerful, but also sharp-edged. A lot of the vulnerabilities don’t come from the core contracts — they come from how people build around them. If you’re integrating AMM logic, **test every edge**. And if you're auditing one, dig deep into assumptions - pricing, token behavior, math, reentrancy, etc.
+Uniswap V3 is powerful, but also sharp-edged. A lot of the vulnerabilities don’t come from the core contracts, they come from how people build around them. If you’re integrating AMM logic, **test every edge**. And if you're auditing one, dig deep into assumptions - pricing, token behavior, math, reentrancy, etc.
 
 You can't just secure swaps. You have to secure the logic *around* them.
 
