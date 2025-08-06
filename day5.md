@@ -1,4 +1,4 @@
-# Things to watch for in Defi protocols. 
+# Things to watch out for in Defi protocols. 
 
 ## 1. Incentive logic must match intention  
 Saw a case where lenders were meant to get more profit as APR increased, but the logic did the opposite. Tiny condition mistake flipped the outcome. Always double-check if your incentives are actually being enforced by the code.
