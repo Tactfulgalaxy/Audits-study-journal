@@ -1,7 +1,7 @@
 Security Lessons for the day. 
 
 1. **Enforce Role & Permission Checks Consistently**
-Any lapse in permission checks — even in one function — creates an entry point for privilege abuse.
+Any lapse in permission checks . Even in one function, creates an entry point for privilege abuse.
 
 
 2. **Validate All Recipients Before Transfers**
@@ -17,7 +17,7 @@ Burn, zero, or reserved addresses must be treated intentionally to avoid silent 
 
 
 5. **Check Both Sender and Receiver Rules**
-Restrictions fail if only one side of a transfer is validated — verify both ends every time.
+Restrictions fail if only one side of a transfer is validated,verify both ends every time.
 
 
 6. **Test for Math & Boundary Edge Cases**
