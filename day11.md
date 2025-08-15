@@ -1,4 +1,5 @@
-## Audit lessons for the day
+# Audit lessons for the day
+
 
 
 1. **Always enforce whitelist and role-based restrictions on-chain for sensitive actions like burns or redemptions, even if off-chain processes are expected to handle eligibility off-chain assumptions can fail due to race conditions or unexpected actor behavior.**
@@ -15,7 +16,8 @@
 
 7. **When updating a user’s reward timestamp or stake state, always settle any pending rewards first before overwriting values—otherwise, legitimate earnings can be permanently lost, and malicious actors can exploit the reset.**
 
-8. **Before transferring tokens to another contract, verify that the recipient contract supports the token standard and has the necessary logic to handle those tokens—otherwise, you risk sending funds into an unrecoverable black hole.*"
+
+8. **Before transferring tokens to another contract, verify that the recipient contract supports the token standard and has the necessary logic to handle those tokens—otherwise, you risk sending funds into an unrecoverable black hole.**
 
 9. **When chaining multiple token transfer or burn calls across contracts, always track who actually holds the tokens at each stage—otherwise you risk charging users twice or failing transactions due to missing funds.**
 
