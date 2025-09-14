@@ -1,0 +1,61 @@
+# Morpheus Audit  Lessons I Learnt
+
+I spent some time going through the **findings** from the Morpheus contest, and honestly, I picked up a lot.  
+These are the main things that stuck with me.. kind of like notes I’d give myself if I were building or auditing a protocol in the future.  
+
+
+
+## 1. Oracles Don’t All Tick at the Same Speed  
+Chainlink feeds update on different schedules, some every hour, others only once every 24 hours.  
+If you use one global freshness check, you’re either:  
+- Accepting stale prices (bad security), or  
+- Reverting all the time (bad UX).  
+
+👉 Lesson: **Each feed should have its own heartbeat check**. Don’t treat them all the same.  
+
+
+
+## 2. stETH Isn’t Like Other Tokens  
+stETH is sneaky. Because of its share mechanics and rounding, you might not always receive the exact amount you try to transfer.  
+If you just log the “amount requested” instead of the **real balance change**, your numbers drift and break things.  
+
+This can snowball into underflows, denial of service, and even lost rewards for users.  
+
+👉 Lesson: **Always record balance differences (after - before)** when handling tokens like stETH.  
+
+
+
+## 3. Integrations Break if You Forget About Upgrades  
+Aave isn’t static — pools change, versions upgrade. In Morpheus, they allowed the owner to switch pool addresses but forgot to fix approvals.  
+
+The result?  
+- Old pools kept unlimited approvals (bad security),  
+- New pools had no approvals (deposits/withdrawals failed).  
+
+👉 Lesson: **Handle migrations safely.**  
+- Use the official `PoolAddressProvider` to always get the current pool.  
+- Or, if you set it manually, revoke old approvals and approve the new one.  
+
+
+
+## 4. Rewards Can End, Yield Doesn’t  
+This one really stood out.  
+In Morpheus, the contract stopped updating balances whenever rewards = 0. The problem? Rewards might stop, but yield doesn’t.  
+
+So stakers were still earning yield, but they couldn’t withdraw it because the system thought nothing changed.  
+
+👉 Lesson: **Never tie yield accounting directly to rewards.**  
+Even if rewards are over, users must still be able to access their yield.  
+
+
+
+## Final Thoughts  
+What I learnt from these findings is simple: **details matter**.  
+- One heartbeat setting caused stale oracles.  
+- A few wei difference in stETH broke balances.  
+- One missing approval broke Aave deposits.  
+- One early return locked yield forever.  
+
+👉 Big picture: Small oversights can easily cause huge problems.  
+That’s what I’ll keep in mind when auditing or building smart contracts.
+Gm
