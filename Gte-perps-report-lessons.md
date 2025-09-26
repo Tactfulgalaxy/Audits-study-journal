@@ -44,5 +44,5 @@ A list of some of the lessons i learnt from going through the valid submissions 
 
 ## Summary
 
-These principles emphasize **constant-time operations, safe batching, strict validation, and accounting consistency.**  
+These issues from the contest emphasize **constant-time operations, safe batching, strict validation, and accounting consistency and so on to avoid issues**  
 Following them ensures contracts remain resilient against gas griefing, DoS, liquidity mismanagement, and accounting exploits.
